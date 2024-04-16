@@ -1,0 +1,40 @@
+scalar DateTime # custom scalar type: https://ariadnegraphql.org/docs/scalars
+
+schema {
+    query: UserQuery,
+    mutation: UserMutation
+}
+
+type UserQuery {
+    users_all: UserAllResponse!
+    one_user(user_id: Int!): UserRead
+}
+
+type UserMutation {
+    create_user(user_data: UserCreateInput!): UserRead!
+}
+
+type PostRead {
+    user_id: Int!
+    text: String!
+}
+
+input UserCreateInput {
+    username: String!
+    email: String!
+    phone_number: String!
+    birth_date: DateTime!
+}
+
+type UserAllResponse {
+    items: [UserRead]!
+}
+
+type UserRead {
+    id: Int!
+    username: String!
+    email: String!
+    phone_number: String!
+    birth_date: String!
+    posts: [PostRead]!
+}

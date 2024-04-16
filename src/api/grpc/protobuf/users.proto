@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+
+message UserRead {
+    string username = 1;
+    string email = 2;
+    string phone_number = 3;
+    int64 birth_date = 4;
+    int64 id = 5;
+}
+
+message UsersResponse {
+    repeated UserRead items = 1;
+}
+
+message UsersRequest {}
+
+service Users {
+    rpc GetAll (UsersRequest) returns (UsersResponse);
+}
+
+
+
